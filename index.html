@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Voyage</title>
+  <!-- CSS 스타일시트 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="game" id="gameContainer">
+
+    <!-- 시작 화면 -->
+    <div class="start-screen" id="startScreen">
+      <h1>⚓ Math Voyage</h1>
+      <p>올바른 사칙연산 배를 골라 목표 숫자를 만들어라!</p>
+      <p style="color: #ff3366; font-weight: bold;">⚠️ 주의: 5번 틀리면 크라켄이 덮쳐옵니다.</p>
+      
+      <div class="diff-area">
+        <button class="diff-option active" id="dEasy" onclick="setDiff(10, 'dEasy')">쉬움 (0~10)</button>
+        <button class="diff-btn diff-option" id="dNormal" onclick="setDiff(20, 'dNormal')">보통 (0~20)</button>
+        <button class="diff-btn diff-option" id="dHard" onclick="setDiff(50, 'dHard')">어려움 (0~50)</button>
+      </div>
+      
+      <button class="big-btn" onclick="startGame()">출항하기</button>
+    </div>
+
+    <!-- 플레이 화면 -->
+    <div class="play-screen hidden" id="playScreen">
+      <div class="top">
+        <div class="timer">⏱ 시간: <span id="time">60</span>초</div>
+        <div class="lives" id="lives">🦑 크라켄 위협: 💚💚💚💚💚</div>
+        <div class="score">🏆 점수: <span id="score">0</span></div>
+      </div>
+
+      <div class="target-area">
+        <div class="target-title">🎯 TARGET NUMBER</div>
+        <div class="target-num" id="targetNum">0</div>
+      </div>
+
+      <div class="sea-stage">
+        <button class="boat-btn" onclick="checkAnswer(0)">
+          <div class="signboard" id="textLeft">0 + 0</div>
+          <div class="character">
+            <div class="captain-emoji">🏴‍☠️</div>
+            <img src="boat.png" alt="Boat" class="boat-img">
+          </div>
+        </button>
+
+        <button class="boat-btn" onclick="checkAnswer(1)">
+          <div class="signboard" id="textRight">0 + 0</div>
+          <div class="character">
+            <div class="captain-emoji">🎩</div>
+            <img src="boat.png" alt="Boat" class="boat-img">
+          </div>
+        </button>
+      </div>
+
+      <div class="bottom">
+        <div class="combo">🔥 COMBO x<span id="combo">0</span></div>
+        <div id="feedback"></div>
+      </div>
+    </div>
+
+    <!-- 종료 화면 -->
+    <div class="end-screen hidden" id="endScreen">
+      <h2 id="endTitle" style="font-size: 32px;">🎉 게임 종료!</h2>
+      <div id="krakenContainer"></div>
+
+      <div class="stat-box">
+        <p>최종 점수: <span id="finalScore" style="color: #ffcc00; font-weight: bold;">0</span></p>
+        <p>최종 맞춘 개수: <span id="finalAccuracy" style="color: #00ffcc; font-weight: bold;">0 / 0</span></p>
+      </div>
+      <button class="big-btn" onclick="location.reload()">다시하기</button>
+    </div>
+
+  </div>
+
+  <!-- 자바스크립트 파일 연결 -->
+  <script src="script.js"></script>
+</body>
+</html>
